@@ -1,0 +1,30 @@
+# algoritmo semaforo (comentario)
+
+configuracion:
+    numpin led_rojo = 13;
+    numpin led_amarillo = 12;
+    numpin led_verde = 11;
+    
+    configurar (13, salida);
+    configurar (12, salida);
+    configurar (11, salida);
+fin
+
+circuito:
+    # Secuencia del semáforo
+    encender(led_rojo);
+    esperar(5000);
+    apagar(led_rojo);
+    
+    encender(led_amarillo);
+    esperar(2000);
+    apagar(led_amarillo);
+    
+    encender(led_verde);
+    esperar(5000);
+    apagar(led_verde);
+    
+    encender(led_amarillo);
+    esperar(1000);
+    apagar(led_amarillo);
+fin

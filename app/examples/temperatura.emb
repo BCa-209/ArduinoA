@@ -1,0 +1,27 @@
+
+# CONTROL DE TEMPERATURA CON VENTILADOR
+
+configuracion:
+    numpin sensor_temperatura = A0;
+    numpin motor_ventilador = 9;
+    decimal temperatura_maxima = 30.0;
+    
+    configurar(motor_ventilador, salida);
+fin
+
+
+circuito:
+    # Leer sensor de temperatura (LM35)
+    numero lectura = leer_sensor(sensor_temperatura);
+    decimal temperatura = lectura * 0.48828125;
+    
+    si (temperatura > temperatura_maxima):
+        encender(motor_ventilador);
+    fin
+        
+    sino:
+        apagar(motor_ventilador);
+    fin
+    
+    esperar(1000);
+fin

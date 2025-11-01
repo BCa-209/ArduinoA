@@ -1,0 +1,29 @@
+ArduinoA/
+├── requirements.txt
+├── run.py
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── routes.py
+│   ├── analyzers/
+│   │   ├── __init__.py
+│   │   ├── tokens.py
+│   │   ├── symbol_table.py
+│   │   ├── lexical_analyzer.py
+│   │   ├── syntax_analyzer.py
+│   │   ├── automata.py
+│   │   └── error_manager.py
+│   ├── models/
+│   │   ├── __init__.py
+│   │   └── analysis_result.py
+│   └── examples/
+│       ├── semaforo.emb
+│       ├── temperatura.emb
+│       └── puerta.emb
+├── templates/
+│   └── index.html
+└── static/
+    ├── css/
+    │   └── styles.css
+    └── js/
+        └── scripts.js

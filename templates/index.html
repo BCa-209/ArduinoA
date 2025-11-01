@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analizador de Lenguaje Embebido</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>🔧 Analizador de Lenguaje para Sistemas Embebidos</h1>
+        
+        <div class="editor-section">
+            <div class="toolbar">
+                <select id="exampleSelector">
+                    <option value="">Seleccionar ejemplo...</option>
+                    <option value="semaforo">Semáforo</option>
+                    <option value="temperatura">Control de Temperatura</option>
+                    <option value="puerta">Puerta de Garage</option>
+                </select>
+                <button onclick="analyzeCode()">Analizar Código</button>
+                <button onclick="clearEditor()">Limpiar</button>
+            </div>
+            
+            <textarea id="codeEditor" placeholder="Escribe tu código aquí..." rows="15"></textarea>
+        </div>
+        
+        <div class="results">
+            <div class="result-section">
+                <h3>Resultados del Análisis</h3>
+                <div id="resultsContainer"></div>
+            </div>
+            
+            <div class="details">
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'Tokens')">Tokens</button>
+                    <button class="tablinks" onclick="openTab(event, 'SymbolTable')">Tabla de Símbolos</button>
+                    <button class="tablinks" onclick="openTab(event, 'Errors')">Errores</button>
+                </div>
+                
+                <div id="Tokens" class="tabcontent">
+                    <div id="tokensList"></div>
+                </div>
+                
+                <div id="SymbolTable" class="tabcontent">
+                    <table id="symbolTable">
+                        <thead>
+                            <tr>
+                                <th>Lexema</th>
+                                <th>Token</th>
+                                <th>Tipo</th>
+                                <th>Valor</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+                
+                <div id="Errors" class="tabcontent">
+                    <div id="errorsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>

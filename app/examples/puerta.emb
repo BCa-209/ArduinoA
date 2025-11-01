@@ -1,0 +1,37 @@
+# PUERTA DE GARAGE AUTOMATICA (comentario)
+
+incluir libreria "servo.h";
+
+configuracion:
+    numpin trigger = 9;
+    numpin echo = 10;
+    numpin servo_pin = 6;
+
+    configurar(trigger,salida);
+    configurar(echo,entrada);
+
+    decimal distancia_maxima = 20.0;
+
+    servo puerta;
+    conectar.puerta(servo_pin);
+    estado.puerta(0);
+fin
+
+circuito:
+    apagar(trigger);
+    esperar(2);
+    encender(trigger);
+    esperar(10);
+    apagar(trigger);
+
+    numero duracion = pulso.echo;
+    numero distancia = duracion * 0.034/2;
+    
+    si:
+        distancia < distancia_maxima:
+        estado.puerta(90);
+    fin
+    sino:
+        estado.puerta(0);
+    fin
+fin
