@@ -68,9 +68,34 @@ function displayResults(result) {
     // Mostrar errores
     displayErrors(result);
     
-    // Abrir pestaña de tokens por defecto
-    openTab(event, 'Tokens');
+    // Abrir pestaña de tokens por defecto - CORREGIDO
+    openTabByName('Tokens');
 }
+
+// Función auxiliar para abrir pestañas sin evento
+function openTabByName(tabName) {
+    const tabcontent = document.getElementsByClassName("tabcontent");
+    for (let i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+    }
+    
+    const tablinks = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+    }
+    
+    // Mostrar la pestaña solicitada
+    document.getElementById(tabName).style.display = "block";
+    
+    // Activar el botón correspondiente
+    const tabButtons = document.getElementsByClassName("tablinks");
+    for (let i = 0; i < tabButtons.length; i++) {
+        if (tabButtons[i].textContent.includes(tabName)) {
+            tabButtons[i].className += " active";
+        }
+    }
+}
+
 
 // Mostrar tokens
 function displayTokens(tokens) {
@@ -146,7 +171,7 @@ function clearEditor() {
     document.getElementById('errorsList').innerHTML = '';
 }
 
-// Sistema de pestañas
+// Sistema de pestañas (para clics en botones)
 function openTab(evt, tabName) {
     const tabcontent = document.getElementsByClassName("tabcontent");
     for (let i = 0; i < tabcontent.length; i++) {
@@ -159,13 +184,14 @@ function openTab(evt, tabName) {
     }
     
     document.getElementById(tabName).style.display = "block";
-    evt.currentTarget.className += " active";
+    
+    // Verificar que evt y evt.currentTarget existen
+    if (evt && evt.currentTarget) {
+        evt.currentTarget.className += " active";
+    }
 }
 
 // Abrir la pestaña de Tokens por defecto
 document.addEventListener('DOMContentLoaded', function() {
-    document.getElementById('Tokens').style.display = 'block';
-    if (document.querySelector('.tablinks')) {
-        document.querySelector('.tablinks').className += ' active';
-    }
+    openTabByName('Tokens');
 });
